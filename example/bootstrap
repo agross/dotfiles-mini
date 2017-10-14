@@ -1,0 +1,4 @@
+#!/usr/bin/env sh
+
+ln -s "$PWD/example" "$HOME/.example"
+ln -s "$PWD/example-dir" "$HOME/.example-dir"

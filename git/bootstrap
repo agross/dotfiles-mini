@@ -1,0 +1,15 @@
+#!/usr/bin/env sh
+
+# Check if homebrew is available (could be any package manager).
+if hash brew 2> /dev/null; then
+  # Check if git is installed.
+  if ! brew ls --versions git > /dev/null; then
+    # Install git.
+    brew install git
+  fi
+fi
+
+# Check if git is available.
+if hash git 2> /dev/null; then
+  ln -s "$PWD/gitconfig" "$HOME/.gitconfig"
+fi

@@ -1,0 +1,20 @@
+#!/usr/bin/env sh
+
+# Abort in case of errors in this script (topic bootstrappers may error, but
+# this script continues).
+set -e
+
+# Iterate the current directory (.) and select:
+#   - direct decendants
+#   - only directories
+#   - names not starting with '.' (i.e. exclude .git/)
+#
+# Then:
+#   - print the processed directory
+#   - run the bootstrapper from that directory.
+find . \
+     -maxdepth 1 \
+     -type d \
+     -not -name '.*' \
+     -execdir printf '%bProcessing%b: %s\n' '\033[32m' '\033[0m' {} \; \
+     -execdir sh -c 'cd "$0" && ./bootstrap' {} \;
